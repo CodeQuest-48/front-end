@@ -1,5 +1,9 @@
+import { Outlet } from 'react-router-dom';
+
 export const AuthLayout = () => {
   return (
-    <div>AuthLayout</div>
-  )
-}
+    <section className="min-h-screen bg-primary flex justify-center">
+      <Outlet />
+    </section>
+  );
+};
