@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 export const Table = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full bg-secondary text-white shadow-lg rounded-sm">
       <div className="p-3">
@@ -25,8 +29,13 @@ export const Table = () => {
             </thead>
             <tbody className="text-sm divide-y divide-gray-100">
               <tr>
-                <td className="p-2 whitespace-nowrap">
-                  <p className="font-medium text-white">subscripción gratis</p>
+                <td
+                  onClick={() => navigate('/sorteo/detalle/1')}
+                  className="p-2 whitespace-nowrap"
+                >
+                  <p className="font-medium text-white hover:underline cursor-pointer">
+                    subscripción gratis
+                  </p>
                 </td>
                 <td className="p-2 whitespace-nowrap">
                   <p className="text-center">{new Date().toDateString()}</p>

@@ -1,4 +1,5 @@
 export * from './CrearSorteoPage';
+export * from './DetalleSorteoPage';
 export * from './HomePage';
 export * from './LoginPage';
 export * from './NotFoundPage';

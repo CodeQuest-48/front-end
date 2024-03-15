@@ -1,6 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AuthLayout, HomeLayout } from '../layouts';
-import { CrearSorteoPage, LoginPage, NotFoundPage, RegisterPage } from '../pages';
+import {
+  CrearSorteoPage,
+  DetalleSorteoPage,
+  LoginPage,
+  NotFoundPage,
+  RegisterPage,
+} from '../pages';
 import { enlacesMenu } from '../utils/enlaces';
 
 export const router = createBrowserRouter([
@@ -16,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: '/sorteo/nuevo',
         element: <CrearSorteoPage />,
+      },
+      {
+        path: '/sorteo/detalle/:id',
+        element: <DetalleSorteoPage />,
       },
     ],
   },
