@@ -1,19 +1,9 @@
-/* ********************************** */
-/*              NOTFOUND              */
-/* ********************************** */
-export * from './NotFoundPage';
-
-/* ********************************** */
-/*                AUTH                */
-/* ********************************** */
-export * from './LoginPage';
-export * from './RegisterPage';
-
-/* ********************************** */
-/*              DASHBOARD             */
-/* ********************************** */
+export * from './CrearSorteoPage';
 export * from './HomePage';
-export * from './SorteosPage';
-export * from './SortearPage';
-export * from './WinnersPage';
+export * from './LoginPage';
+export * from './NotFoundPage';
 export * from './ProfilePage';
+export * from './RegisterPage';
+export * from './SortearPage';
+export * from './SorteosPage';
+export * from './WinnersPage';
