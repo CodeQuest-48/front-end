@@ -13,31 +13,31 @@ interface Enlace {
 
 export const enlacesMenu: Enlace[] = [
   {
-    to: '/inicio',
+    to: 'inicio',
     icon: <FaHome size={22} />,
     title: 'Inicio',
     component: <HomePage />,
   },
   {
-    to: '/sorteos',
+    to: 'sorteos',
     icon: <BsFillTicketPerforatedFill size={22} />,
     title: 'Sorteos',
     component: <SorteosPage />,
   },
   {
-    to: '/sortear',
+    to: 'sortear',
     icon: <GiRollingDices size={22} />,
     title: 'Sortear',
     component: <SortearPage />,
   },
   {
-    to: '/ganadores',
+    to: 'ganadores',
     icon: <GiTrophyCup size={22} />,
     title: 'Ganadores',
     component: <WinnersPage />,
   },
   {
-    to: '/perfil',
+    to: 'perfil',
     icon: <FaUser size={22} />,
     title: 'Perfil',
     component: <ProfilePage />,

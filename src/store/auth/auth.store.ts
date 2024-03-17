@@ -1,12 +1,55 @@
 import { StateCreator, create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
+import { AuthStatus, User } from '../../interfaces/auth.interface';
+import { AuthService } from '../../services/auth.service';
 
 export interface AuthState {
 	token?: string;
+	user?: User;
+	status: AuthStatus;
+	isLoading: boolean;
+	error: string | null;
+
+	loginUser: (email: string, password: string) => Promise<void>;
+	logoutUser: () => void;
 }
 
 const storeApi: StateCreator<AuthState> = set => ({
 	token: undefined,
+	status: 'pending',
+	user: undefined,
+	isLoading: false,
+	error: null,
+
+	loginUser: async (email, password) => {
+		try {
+			set({ isLoading: true, error: null });
+
+			const { token, ...user } = await AuthService.login(
+				email,
+				password
+			);
+			set({ status: 'authorized', token, user });
+		} catch (error) {
+			set({
+				status: 'unauthorized',
+				token: undefined,
+				user: undefined,
+				error: 'Credenciales incorrectas',
+			});
+			throw new Error('Acceso no autorizado');
+		} finally {
+			set({ isLoading: false });
+		}
+	},
+
+	logoutUser: () => {
+		set({
+			status: 'unauthorized',
+			token: undefined,
+			user: undefined,
+		});
+	},
 });
 
 export const useAuthStore = create<AuthState>()(

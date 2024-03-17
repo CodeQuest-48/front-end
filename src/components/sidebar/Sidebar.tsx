@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { SlLogout } from 'react-icons/sl';
 import { enlacesMenu } from '../../utils/enlaces';
+import { useAuthStore } from '../../store';
 
 export const Sidebar = () => {
+	const logoutUser = useAuthStore(state => state.logoutUser);
+
 	return (
 		<aside className='bg-secondary w-[300px] h-screen text-white py-8 px-5 flex  flex-col gap-10'>
 			<img
@@ -32,7 +35,10 @@ export const Sidebar = () => {
 			</nav>
 
 			<footer className='flex w-full'>
-				<button className='bg-transparent w-full text-white px-5 py-3 rounded-md flex items-center gap-5 font-bold'>
+				<button
+					className='bg-transparent w-full text-white px-5 py-3 rounded-md flex items-center gap-5 font-bold'
+					onClick={logoutUser}
+				>
 					<SlLogout size={16} />
 					Cerrar sesión
 				</button>
