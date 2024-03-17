@@ -12,6 +12,7 @@ export interface AuthState {
 
 	loginUser: (email: string, password: string) => Promise<void>;
 	logoutUser: () => void;
+	checkAuthStatus: () => Promise<void>;
 }
 
 const storeApi: StateCreator<AuthState> = set => ({
@@ -38,6 +39,27 @@ const storeApi: StateCreator<AuthState> = set => ({
 				error: 'Credenciales incorrectas',
 			});
 			throw new Error('Acceso no autorizado');
+		} finally {
+			set({ isLoading: false });
+		}
+	},
+
+	checkAuthStatus: async () => {
+		try {
+			set({ isLoading: true });
+			const { token, ...usuario } = await AuthService.checkStatus();
+			set({
+				status: 'authorized',
+				token,
+				user: usuario,
+			});
+		} catch (error) {
+			set({
+				status: 'unauthorized',
+				token: undefined,
+				user: undefined,
+			});
+			throw new Error('Token expiró o es inválido');
 		} finally {
 			set({ isLoading: false });
 		}

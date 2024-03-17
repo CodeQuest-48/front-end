@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { SlLogout } from 'react-icons/sl';
-import { enlacesMenu } from '../../utils/enlaces';
-import { useAuthStore } from '../../store';
+import { enlacesMenu } from '../../../utils/enlaces';
+import { useAuthStore } from '../../../store';
 
 export const Sidebar = () => {
 	const logoutUser = useAuthStore(state => state.logoutUser);

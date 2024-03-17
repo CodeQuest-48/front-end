@@ -16,7 +16,6 @@ export const LoginPage = () => {
 	});
 
 	const onLogin = handleSubmit(data => {
-		console.log(data);
 		loginUser(data.email, data.password);
 		// navigate('/inicio');
 	});

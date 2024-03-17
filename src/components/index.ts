@@ -1,4 +1,17 @@
-export * from './searchbar/SearchBar';
-export * from './sidebar/Sidebar';
-export * from './table/Table';
-export * from './title/Title';
+/* ********************************** */
+/*                AUTH                */
+/* ********************************** */
+export * from './auth/AlertMessage';
+
+/* ********************************** */
+/*               SHARED               */
+/* ********************************** */
+export * from './shared/sidebar/Sidebar';
+export * from './shared/title/Title';
+export * from './shared/SelectSorteo';
+
+/* ********************************** */
+/*               SORTEOS              */
+/* ********************************** */
+export * from './sorteos/searchbar/SearchBar';
+export * from './sorteos/TableSorteos';

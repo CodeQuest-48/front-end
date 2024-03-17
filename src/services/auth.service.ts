@@ -29,4 +29,17 @@ export class AuthService {
 			throw new Error('Unable to login');
 		}
 	};
+
+	static checkStatus = async (): Promise<LoginResponse> => {
+		try {
+			const { data } = await api.get<LoginResponse>(
+				'/auth/check-auth-status'
+			);
+
+			return data;
+		} catch (error) {
+			console.log(error);
+			throw new Error('Token expiró o es inválido');
+		}
+	};
 }
