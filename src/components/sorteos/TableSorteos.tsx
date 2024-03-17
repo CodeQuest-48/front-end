@@ -35,11 +35,11 @@ export const TableSorteos = () => {
 						<div
 							className={`grid grid-cols-5 ${
 								index % 2 === 0 ? 'bg-white' : 'bg-[#f9f9f9]'
-							} h-[50px] rounded-[5px]  items-center`}
+							} h-[50px] rounded-[4px]  items-center`}
 							key={sorteo.id}
 						>
 							<Link
-								to={`/inicio/sorteos/${sorteo.id}`}
+								to={`/sorteos/${sorteo.id}`}
 								className='font-bold text-center capitalize  hover:text-primary hover:underline transition-all text-purple-700 px-5'
 							>
 								{sorteo.title.length > 20

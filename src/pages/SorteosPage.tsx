@@ -20,8 +20,8 @@ export const SorteosPage = () => {
 				</div>
 				<div>
 					<button
-						onClick={() => navigate('/sorteo/nuevo')}
-						className='flex items-center border-2 border-white px-3 py-1 gap-x-1 text-secondary rounded-md bg-white font-semibold'
+						onClick={() => navigate('/sorteos/nuevo')}
+						className='flex items-center border-2 border-white px-4 py-1 gap-x-1 text-secondary rounded-md bg-white font-bold hover:bg-tertiary hover:border-transparent  transition-all duration-300 ease-in-out'
 					>
 						<IoAddOutline />
 						Añadir sorteo

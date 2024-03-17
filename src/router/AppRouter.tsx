@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { AuthLayout, HomeLayout } from '../layouts';
 import {
 	CrearSorteoPage,
@@ -20,14 +20,22 @@ export const router = createBrowserRouter([
 				element: enlace.component,
 			})),
 			{
-				path: '/sorteo/nuevo',
+				path: '/',
+				element: <Navigate to={enlacesMenu[0].to} />,
+			},
+			{
+				path: 'sorteos/nuevo',
 				element: <CrearSorteoPage />,
 			},
 			{
-				path: '/sorteo/detalle/:id',
+				path: 'sorteos/:id',
 				element: <DetalleSorteoPage />,
 			},
 		],
+	},
+	{
+		path: '/sorteo/:id',
+		element: <p>It's work</p>,
 	},
 	{
 		path: '/auth',

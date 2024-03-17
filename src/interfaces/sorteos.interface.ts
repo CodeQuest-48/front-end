@@ -6,6 +6,7 @@ export interface Sorteo {
 	endDate: string;
 	creador: Creador;
 	participantes: Participante[];
+	premios: Premio[];
 }
 
 export interface Creador {
@@ -25,4 +26,11 @@ export interface Participante {
 	avatarDiscord: null;
 	createdAt: string;
 	updatedAt: string;
+}
+
+export interface Premio {
+	id: string;
+	title: string;
+	description: string;
+	urlImage: null;
 }
