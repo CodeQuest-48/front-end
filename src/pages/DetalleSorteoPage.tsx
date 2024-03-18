@@ -40,9 +40,9 @@ export const DetalleSorteoPage = () => {
 				</div>
 			</div>
 
-			<div className='flex flex-col gap-5 bg-red-500 text-white'>
+			<div className='flex flex-col gap-5  text-white'>
 				<div className='flex flex-col gap-3'>
-					<p>{sorteo?.description}</p>
+					<p className='mb-7 mt-2'>{sorteo?.description}</p>
 					<div className='flex justify-between'>
 						<p>
 							Número de participantes:{' '}

@@ -10,3 +10,4 @@ export * from './SorteosPage';
 export * from './WinnersPage';
 export * from './LandingSorteoPage';
 export * from './SuccessPage';
+export * from './FailedPage';

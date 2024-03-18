@@ -8,6 +8,7 @@ import {
 	RegisterPage,
 	LandingSorteoPage,
 	SuccessPage,
+	FailedPage,
 } from '../pages';
 import { enlacesMenu } from '../utils/enlaces';
 
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
 	{
 		path: `/sorteo/success/:participanteId`,
 		element: <SuccessPage />,
+	},
+	{
+		path: '/sorteo/failed',
+		element: <FailedPage />,
 	},
 	{
 		path: '/auth',
