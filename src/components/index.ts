@@ -10,6 +10,7 @@ export * from './shared/sidebar/Sidebar';
 export * from './shared/title/Title';
 export * from './shared/SelectSorteo';
 export * from './shared/InputForm';
+export * from './shared/Loader';
 
 /* ********************************** */
 /*               SORTEOS              */

@@ -8,3 +8,5 @@ export * from './RegisterPage';
 export * from './SortearPage';
 export * from './SorteosPage';
 export * from './WinnersPage';
+export * from './LandingSorteoPage';
+export * from './SuccessPage';

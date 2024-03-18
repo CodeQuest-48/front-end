@@ -6,6 +6,8 @@ import {
 	LoginPage,
 	NotFoundPage,
 	RegisterPage,
+	LandingSorteoPage,
+	SuccessPage,
 } from '../pages';
 import { enlacesMenu } from '../utils/enlaces';
 
@@ -35,7 +37,11 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/sorteo/:id',
-		element: <p>It's work</p>,
+		element: <LandingSorteoPage />,
+	},
+	{
+		path: `/sorteo/success/:participanteId`,
+		element: <SuccessPage />,
 	},
 	{
 		path: '/auth',

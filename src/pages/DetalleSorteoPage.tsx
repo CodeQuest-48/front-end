@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { FaCalendarCheck } from 'react-icons/fa';
 import { FaRegClipboard } from 'react-icons/fa';
-import { Title } from '../components';
+import { Loader, Title } from '../components';
 import { useSorteoById } from '../hooks';
 import { formatearFecha } from '../helpers/functions';
 
@@ -12,10 +12,8 @@ export const DetalleSorteoPage = () => {
 	const { sorteoQueryById } = useSorteoById(id);
 	const { isLoading, isError, data: sorteo } = sorteoQueryById;
 
-	if (isLoading) return <div>Cargando...</div>;
+	if (isLoading) return <Loader />;
 	if (isError) return <div>Error al cargar el sorteo</div>;
-
-	console.log(sorteo);
 
 	return (
 		<section className='flex flex-col gap-10'>
@@ -45,12 +43,20 @@ export const DetalleSorteoPage = () => {
 			<div className='flex flex-col gap-5 bg-red-500 text-white'>
 				<div className='flex flex-col gap-3'>
 					<p>{sorteo?.description}</p>
-					<p className='self-end'>
-						Creado por{' '}
-						<span className='font-bold'>
-							{sorteo?.creador.nombre}
-						</span>
-					</p>
+					<div className='flex justify-between'>
+						<p>
+							Número de participantes:{' '}
+							<span className='font-bold text-xl'>
+								{sorteo?.participantes.length}
+							</span>
+						</p>
+						<p className='self-end'>
+							Creado por{' '}
+							<span className='font-bold'>
+								{sorteo?.creador.nombre}
+							</span>
+						</p>
+					</div>
 				</div>
 
 				<div className='flex gap-5 justify-between text-xl text-white'>
