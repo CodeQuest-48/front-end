@@ -2,11 +2,13 @@ export interface Sorteo {
 	id: string;
 	title: string;
 	description: string;
+	premio: string;
 	startDate: string;
 	endDate: string;
 	creador: Creador;
 	participantes: Participante[];
 	premios: Premio[];
+	ganador: Participante | null;
 }
 
 export interface Creador {

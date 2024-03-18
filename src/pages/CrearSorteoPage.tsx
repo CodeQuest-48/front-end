@@ -58,6 +58,15 @@ export const CrearSorteoPage = () => {
 				/>
 
 				<InputForm
+					label='Premio'
+					name='premio'
+					errors={errors}
+					required={true}
+					placeholder='Descripción del premio'
+					register={register}
+				/>
+
+				<InputForm
 					label='Fecha de inicio'
 					name='startDate'
 					errors={errors}

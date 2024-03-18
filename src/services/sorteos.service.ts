@@ -7,6 +7,7 @@ export interface BodySorteo {
 	description: string;
 	startDate: string;
 	endDate: string;
+	premio: string;
 }
 
 export class SorteosService {
@@ -35,6 +36,19 @@ export class SorteosService {
 	static async createSorteo(newSorteo: BodySorteo) {
 		try {
 			const { data } = await api.post('/sorteos/new', newSorteo);
+
+			return data;
+		} catch (error) {
+			this.handleErrors(error);
+		}
+	}
+
+	// ASIGNAR UN GANADOR
+	static async asignWinner(sorteoId: string, participanteId: string) {
+		try {
+			const { data } = await api.patch(
+				`/sorteos/${sorteoId}/asignar-ganador/${participanteId}`
+			);
 
 			return data;
 		} catch (error) {

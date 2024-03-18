@@ -1,25 +1,42 @@
 import { Loader, SelectSorteo } from '../components';
-import { useParticipantes } from '../hooks';
+import { useParticipantes, useSorteoById } from '../hooks';
 import { Participante } from '../interfaces/sorteos.interface';
 import { useSorteosStore } from '../store';
 import IconoDiscord from '../assets/iconDiscord.svg';
 import { sortearGanador } from '../helpers/functions';
+import { useState } from 'react';
+import { SorteosService } from '../services/sorteos.service';
+import { useAsignWinner } from '../hooks/useAsignWinner';
 
 export const SortearPage = () => {
 	const sorteoSelectedById = useSorteosStore(
 		state => state.sorteoSelectedById
 	);
+	const [selectedParticipante, setSelectedParticipante] =
+		useState<Participante | null>();
+	const [winner, setWinner] = useState<Participante | null>(null);
 
 	const sorteoId = sorteoSelectedById
 		? sorteoSelectedById.id
 		: undefined;
 
 	const participantesQuery = useParticipantes(sorteoId);
+	const { sorteoQueryById } = useSorteoById(sorteoId);
+	const sorteo = sorteoQueryById.data;
+
 	const { data: participantes, isLoading } = participantesQuery;
 
 	const selectWinner = () => {
 		const winner = sortearGanador(participantes || []);
-		console.log(winner);
+		setSelectedParticipante(winner);
+	};
+
+	const asignWinner = useAsignWinner(sorteoId);
+	const handleAsignWinner = () => {
+		asignWinner.mutate({
+			sorteoId,
+			participanteId: selectedParticipante?.id,
+		});
 	};
 
 	return (
@@ -29,7 +46,7 @@ export const SortearPage = () => {
 
 				<button
 					className={` text-white py-3 w-[60%] self-center rounded-md ${
-						!participantes
+						!participantes || participantes.length === 0
 							? 'cursor-not-allowed bg-slate-700'
 							: 'bg-secondary transition-all'
 					}`}
@@ -40,6 +57,39 @@ export const SortearPage = () => {
 				>
 					Sortear
 				</button>
+
+				<div className='flex gap-5 items-center'>
+					<div className='flex flex-col gap-5 bg-secondary text-white p-5 flex-[2]'>
+						<p className='text-xl font-bold'>
+							Participante seleccionado:{' '}
+						</p>
+						<p className='text-lg'>
+							{sorteo?.ganador
+								? sorteo.ganador.globalNameDiscord
+								: selectedParticipante?.globalNameDiscord}
+						</p>
+					</div>
+					{selectedParticipante && (
+						<button
+							className='bg-green-500 flex-1 py-4 rounded-md font-bold'
+							onClick={handleAsignWinner}
+						>
+							Asignar Ganador
+						</button>
+					)}
+				</div>
+
+				{sorteo && sorteo.ganador && (
+					<div className='flex bg-tertiary text-secondary flex-col gap-4 p-5 rounded-md w-[60%] self-center mt-5'>
+						<p className='text-xl font-bold'>Ganador del sorteo: </p>
+						<div className='flex flex-col gap-1'>
+							<p className='font-bold text-xl'>
+								{sorteo.ganador.globalNameDiscord}
+							</p>
+							<p className='text-lg'>{sorteo.ganador.username}</p>
+						</div>
+					</div>
+				)}
 			</section>
 			<section className='bg-white flex-1 h-full rounded-[8px] px-5 py-10 flex flex-col gap-5'>
 				<h2 className='text-3xl font-bold text-secondary text-center'>

@@ -91,6 +91,11 @@ export const DetalleSorteoPage = () => {
 					<FaRegClipboard size={22} />
 				</button>
 			</div>
+
+			<div className='flex flex-col gap-5 text-white'>
+				<h3 className='text-2xl font-bold'>Premio</h3>
+				<p>{sorteo?.premio}</p>
+			</div>
 		</section>
 	);
 };
