@@ -1,3 +1,5 @@
+import { Participante } from '../interfaces/sorteos.interface';
+
 export const formatearFecha = (
 	fechaInput: string | Date | undefined
 ) => {
@@ -21,4 +23,15 @@ export const formatearFecha = (
 	// Convertir la fecha a una cadena con el formato deseado
 	const newDate: string = fecha.toLocaleDateString('es-ES', opciones);
 	return newDate.split('de').join('').trim();
+};
+
+export const sortearGanador = (participantes: Participante[]) => {
+	if (!participantes || participantes.length === 0) {
+		return null; // Retornar null si la lista está vacía o no definida
+	}
+
+	const indiceAleatorio = Math.floor(
+		Math.random() * participantes.length
+	);
+	return participantes[indiceAleatorio];
 };

@@ -3,23 +3,43 @@ import { useParticipantes } from '../hooks';
 import { Participante } from '../interfaces/sorteos.interface';
 import { useSorteosStore } from '../store';
 import IconoDiscord from '../assets/iconDiscord.svg';
+import { sortearGanador } from '../helpers/functions';
 
 export const SortearPage = () => {
 	const sorteoSelectedById = useSorteosStore(
 		state => state.sorteoSelectedById
 	);
 
-	const sorteoId = sorteoSelectedById ? sorteoSelectedById.id : undefined;
+	const sorteoId = sorteoSelectedById
+		? sorteoSelectedById.id
+		: undefined;
 
 	const participantesQuery = useParticipantes(sorteoId);
 	const { data: participantes, isLoading } = participantesQuery;
 
+	const selectWinner = () => {
+		const winner = sortearGanador(participantes || []);
+		console.log(winner);
+	};
+
 	return (
-		<div className='flex h-full'>
-			<section className='flex-[2]'>
+		<div className='flex h-full gap-5'>
+			<section className='flex-[2] flex flex-col gap-5 '>
 				<SelectSorteo />
 
-				
+				<button
+					className={` text-white py-3 w-[60%] self-center rounded-md ${
+						!participantes
+							? 'cursor-not-allowed bg-slate-700'
+							: 'bg-secondary transition-all'
+					}`}
+					onClick={selectWinner}
+					disabled={
+						isLoading || !participantes || participantes.length === 0
+					}
+				>
+					Sortear
+				</button>
 			</section>
 			<section className='bg-white flex-1 h-full rounded-[8px] px-5 py-10 flex flex-col gap-5'>
 				<h2 className='text-3xl font-bold text-secondary text-center'>
