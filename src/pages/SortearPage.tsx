@@ -5,7 +5,6 @@ import { useSorteosStore } from '../store';
 import IconoDiscord from '../assets/iconDiscord.svg';
 import { sortearGanador } from '../helpers/functions';
 import { useState } from 'react';
-import { SorteosService } from '../services/sorteos.service';
 import { useAsignWinner } from '../hooks/useAsignWinner';
 
 export const SortearPage = () => {
@@ -14,7 +13,6 @@ export const SortearPage = () => {
 	);
 	const [selectedParticipante, setSelectedParticipante] =
 		useState<Participante | null>();
-	const [winner, setWinner] = useState<Participante | null>(null);
 
 	const sorteoId = sorteoSelectedById
 		? sorteoSelectedById.id

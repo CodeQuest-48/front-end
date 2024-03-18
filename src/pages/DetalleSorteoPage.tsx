@@ -5,12 +5,19 @@ import { FaRegClipboard } from 'react-icons/fa';
 import { Loader, Title } from '../components';
 import { useSorteoById } from '../hooks';
 import { formatearFecha } from '../helpers/functions';
+import { useState } from 'react';
+import { UpdateSorteoPage } from '.';
+import { useDeleteSorteo } from '../hooks/useDeleteSorteo';
 
 export const DetalleSorteoPage = () => {
 	const { id } = useParams();
 
 	const { sorteoQueryById } = useSorteoById(id);
 	const { isLoading, isError, data: sorteo } = sorteoQueryById;
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const mutationDeleteSorteo = useDeleteSorteo();
 
 	if (isLoading) return <Loader />;
 	if (isError) return <div>Error al cargar el sorteo</div>;
@@ -31,10 +38,18 @@ export const DetalleSorteoPage = () => {
 				<Title title={sorteo?.title || ''} />
 
 				<div className='flex gap-4 items-end'>
-					<button className='py-2 w-32 text-white bg-sky-600 rounded-md hover:bg-sky-700'>
+					<button
+						className='py-2 w-32 text-white bg-sky-600 rounded-md hover:bg-sky-700'
+						onClick={() => setIsModalOpen(true)}
+					>
 						Actualizar
 					</button>
-					<button className='py-2 w-32 text-white bg-red-600 rounded-md hover:bg-red-700'>
+					<button
+						className='py-2 w-32 text-white bg-red-600 rounded-md hover:bg-red-700'
+						onClick={() =>
+							mutationDeleteSorteo.mutate({ id: sorteo!.id })
+						}
+					>
 						Eliminar
 					</button>
 				</div>
@@ -96,6 +111,13 @@ export const DetalleSorteoPage = () => {
 				<h3 className='text-2xl font-bold'>Premio</h3>
 				<p>{sorteo?.premio}</p>
 			</div>
+
+			{isModalOpen && (
+				<UpdateSorteoPage
+					setIsModalOpen={setIsModalOpen}
+					sorteo={sorteo!}
+				/>
+			)}
 		</section>
 	);
 };

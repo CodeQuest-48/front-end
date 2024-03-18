@@ -11,3 +11,4 @@ export * from './WinnersPage';
 export * from './LandingSorteoPage';
 export * from './SuccessPage';
 export * from './FailedPage';
+export * from './UpdateSorteoPage';

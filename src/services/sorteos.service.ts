@@ -3,7 +3,7 @@ import { api } from '../api/api';
 import { Sorteo } from '../interfaces/sorteos.interface';
 
 export interface BodySorteo {
-	name: string;
+	title: string;
 	description: string;
 	startDate: string;
 	endDate: string;
@@ -36,6 +36,29 @@ export class SorteosService {
 	static async createSorteo(newSorteo: BodySorteo) {
 		try {
 			const { data } = await api.post('/sorteos/new', newSorteo);
+
+			return data;
+		} catch (error) {
+			this.handleErrors(error);
+		}
+	}
+
+	static async updateSorteo(id: string, updatedSorteo: BodySorteo) {
+		try {
+			const { data } = await api.patch(
+				`/sorteos/${id}`,
+				updatedSorteo
+			);
+
+			return data;
+		} catch (error) {
+			this.handleErrors(error);
+		}
+	}
+
+	static async deleteSorteo(id: string) {
+		try {
+			const { data } = await api.delete(`/sorteos/${id}`);
 
 			return data;
 		} catch (error) {
